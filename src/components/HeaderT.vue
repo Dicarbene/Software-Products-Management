@@ -5,7 +5,6 @@ import ThemeChangeButton from "./Buttons/ThemeChangeButton.vue";
 
 const router = useRouter();
 const route = useRoute();
-const theme = ref(false);
 const logged = ref(false);
 
 const backHome = () => {
@@ -13,12 +12,6 @@ const backHome = () => {
 };
 const toBoard = () => {
   router.push("/board");
-};
-
-
-const changeTheme = () => {
-  the.theme = the.theme === "corporate" ? "light" : "corporate";
-  console.log(the);
 };
 </script>
 
@@ -38,7 +31,7 @@ const changeTheme = () => {
     <div class="navbar-end">
       <ThemeChangeButton></ThemeChangeButton>
       <div v-if="!logged">
-        <a class="btn btn-primary mr-3">Log in</a>
+        <a class="btn btn-primary mr-3 mb-0.5">Log in</a>
         <a class="btn btn-accent">Register</a>
       </div>
       <div v-else>

@@ -7,8 +7,13 @@ export const useThemeSelection = defineStore('theme',{
     } 
   },
   actions: {
-    changeTheme(){
-      this.theme = this.theme === "corporate" ? "dark" : "corporate";
+    change2Dark(){
+      this.theme = "dark";
+      console.log("dark selected");
+    },
+    change2Light(){
+      this.theme = "corporate";
+      console.log("light selected");
     }
   },
 });

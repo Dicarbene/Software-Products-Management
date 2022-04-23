@@ -1,19 +1,28 @@
 <script setup>
-import { themeSelection } from '@/stores/reactive/themeSelection.js';
-import { ref,watch } from 'vue';
+import { ref } from 'vue';
+import { watch } from 'vue';
+import { useThemeSelection } from '@/stores/themeSelection';
+import { storeToRefs } from 'pinia';
 /* !state action called twice
  * using this to avoid the above issue
  */
+const themeStore = useThemeSelection();
+const { theme } = storeToRefs(themeStore);
+
+
 const isLight = ref(true);
+
 watch(isLight, () => {
-  themeSelection.changeTheme;
   if (isLight.value) {
-    themeSelection.changeTheme;
+    themeStore.$patch((state) => {
+      state.theme = 'corporate';
+    });
   } else {
-    themeSelection.value.change2Light;
+    themeStore.$patch((state) => {
+      state.theme = 'dark';
+    });
   }
 });
-
 
 </script>
 
