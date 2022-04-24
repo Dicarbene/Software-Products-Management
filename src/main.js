@@ -4,7 +4,6 @@ import App from './App.vue'
 import { routes } from './routes.js'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createPinia } from 'pinia'
-import { useThemeSelection } from './stores/themeSelection'
 
 const app = createApp(App)
 

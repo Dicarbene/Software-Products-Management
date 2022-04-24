@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 
+
 export const useThemeSelection = defineStore('theme',{
   state: ()=>{
     return{
@@ -8,12 +9,12 @@ export const useThemeSelection = defineStore('theme',{
   },
   actions: {
     change2Dark(){
-      this.theme = "dark";
-      console.log("dark selected");
+      this.theme = "dracula";
+      console.log("dark theme selected");
     },
     change2Light(){
       this.theme = "corporate";
-      console.log("light selected");
+      console.log("light theme selected");
     }
   },
 });
