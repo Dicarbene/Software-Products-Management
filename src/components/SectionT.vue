@@ -1,11 +1,5 @@
 <script setup>
-import { usePostStore } from '../stores/posts'
-import { faker } from '@faker-js/faker';
-import { ref } from 'vue';
-const postData = usePostStore;
-const para = ref(faker.lorem.paragraph(3));
-const title = ref(faker.lorem.sentence());
-console.log(postData);
+
 </script>
 <template>
   <section class="p-5">

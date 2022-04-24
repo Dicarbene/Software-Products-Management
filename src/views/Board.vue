@@ -4,8 +4,6 @@ import AsideT from '../components/AsideT.vue'
 import FooterT from '../components/FooterT.vue'
 import SectionT from '../components/SectionT.vue'
 import NavT from '../components/NavT.vue'
-import HeaderT from '../components/HeaderT.vue'
-import testView from '../components/testView.vue'
 </script>
 
 <template>
