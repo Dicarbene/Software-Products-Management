@@ -1,7 +1,7 @@
 <script setup>
 import FooterT from '../components/FooterT.vue'
 import { useRouter, useRoute } from 'vue-router'
-import { ref,defineEmits } from 'vue';
+import { ref} from 'vue';
 import LoginModal from '@/components/Modals/LoginModal.vue';
 const router = useRouter();
 const route = useRoute();

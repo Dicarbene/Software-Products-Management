@@ -2,10 +2,13 @@
 import { ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import ThemeChangeButton from "./Buttons/ThemeChangeButton.vue";
+import LoginModal from '@/components/Modals/LoginModal.vue';
+import RegisterModal from '@/components/Modals/RegisterModal.vue';
+import { useUserStatus } from "@/stores/userStatus";
+import { storeToRefs } from "pinia";
 
 const router = useRouter();
 const route = useRoute();
-const logged = ref(false);
 
 const backHome = () => {
   router.push("/");
@@ -13,6 +16,29 @@ const backHome = () => {
 const toBoard = () => {
   router.push("/board");
 };
+
+const lrState = ref({
+  loginOpen: false,
+  registerOpen: false
+});
+
+const userStatusStore = useUserStatus();
+const { logged, user } = storeToRefs(userStatusStore);
+
+const state = ref({
+  loginOpen: false,
+  registerOpen: false,
+  logged: false,
+})
+
+const close = (ss) => {
+  if(ss=="login"){
+    state.value.loginOpen = false;
+  }else if(ss == "register"){
+    state.value.registerOpen = false;
+  }
+}
+
 </script>
 
 <template>
@@ -29,10 +55,12 @@ const toBoard = () => {
     </div>
     <div class="navbar-center hidden lg:flex"></div>
     <div class="navbar-end">
-      <ThemeChangeButton></ThemeChangeButton>
+
+      <ThemeChangeButton />
+
       <div v-if="!logged">
-        <a class="btn btn-primary mr-3 mb-0.5">Log in</a>
-        <a class="btn btn-accent">Register</a>
+        <a class="btn btn-primary mr-3 mb-0.5" @click="state.loginOpen = true">Log in</a>
+        <a class="btn btn-accent" @click ="state.registerOpen=true">Register</a>
       </div>
       <div v-else>
         <a class="btn btn-ghost mr-3">name</a>
@@ -40,4 +68,11 @@ const toBoard = () => {
       </div>
     </div>
   </div>
+
+  <Teleport to="body">
+    <LoginModal v-if="state.loginOpen" @close-modal="close('login')" />
+  </Teleport>
+  <Teleport to="body">
+    <RegisterModal v-if="state.registerOpen" @close-modal="close('register')" />
+  </Teleport>
 </template>
