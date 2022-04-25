@@ -3,7 +3,7 @@
 ### 前端:
 Vue3 + Vite + Pinia + Vue Router + Tailwindcss + Daisy UI
 ### 后端:
-Node.js + Express.js + mySQL
+Node.js + Express.js + mySQL + Prisma
 ## :shell: 项目构建指南
 ``` shell
 npm install
