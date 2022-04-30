@@ -2,18 +2,23 @@ const Home = () => import("./views/Home.vue");
 const About = () => import("./views/About.vue");
 const NotFound = () => import("./views/NotFound.vue");
 const testView = () => import("./components/testView.vue");
-const Board = () => import("./views/Board.vue");
 const User = () => import("./views/User.vue");
 const UserBoard = () => import("./views/UserBoard.vue");
 const RepoBoard = () => import("./views/RepositoryBoard.vue");
 const Repo = () => import("./views/Repository.vue");
 const Code = () => import("./views/SingleCode.vue");
+const Search = () => import("./views/Search.vue");
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
   { //首页
     path: "/",
     component: Home,
     meta: { title: "Home" } 
+  },
+  { //搜索页
+    path: "/search",
+    component: Search,
+    meta: {title: "Search Page"}
   },
   { //关于页
     path: "/about",
