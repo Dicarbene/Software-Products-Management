@@ -4,6 +4,7 @@ const NotFound = () => import("./views/NotFound.vue");
 const testView = () => import("./components/testView.vue");
 const Board = () => import("./views/Board.vue");
 const User = () => import("./views/User.vue");
+const UserBoard = () => import("./views/UserBoard.vue");
 const RepoBoard = () => import("./views/RepositoryBoard.vue");
 const Repo = () => import("./views/Repository.vue");
 const Code = () => import("./views/SingleCode.vue");
@@ -21,7 +22,7 @@ export const routes = [
   },
   { //用户总版
     path: "/users",
-    component: Board,
+    component: UserBoard,
     meta: { title: "Users Board" },
   },
   { //用户页
