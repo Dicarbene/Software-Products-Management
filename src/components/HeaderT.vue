@@ -37,9 +37,9 @@ const close = (ss) => {
   <div class="navbar bg-base-100 opacity-90 backdrop-blur text-sans">
     <div class="navbar-start">
       <NavDropdown class=" z-50"/>
-      <Home/>
     </div>
     <div class="navbar-center hidden lg:flex">
+      <Home/>
     </div>
     <div class="navbar-end">
       <ThemeChangeButton />

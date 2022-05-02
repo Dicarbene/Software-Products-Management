@@ -1,13 +1,6 @@
 <script setup>
-import FooterT from '../components/FooterT.vue'
-import { useRouter, useRoute } from 'vue-router'
 import { ref } from 'vue';
 import LoginModal from '@/components/Modals/LoginModal.vue';
-const router = useRouter();
-const route = useRoute();
-const toBoard = () => {
-  router.push('/board');
-}
 const open = ref(false);
 const close = () => {
   open.value = false;
@@ -35,6 +28,4 @@ const close = () => {
       </div>
     </div>
   </main>
-
-  <FooterT />
 </template>

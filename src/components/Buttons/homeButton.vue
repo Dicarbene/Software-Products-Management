@@ -4,5 +4,5 @@
   const backHome = () => {router.push("/");};
 </script>
 <template>
-  <a @click="backHome" class="btn btn-ghost normal-case text-xl text-bold">SPM</a>
+  <a @click="backHome" class="btn btn-ghost normal-case text-3xl text-bold">SPM</a>
 </template>

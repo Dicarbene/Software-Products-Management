@@ -46,7 +46,7 @@ export const routes = [
     meta: { title: "Repository" },
   },
   { //代码页
-    path: "/code/:id",
+    path: "/repo/:repoid/:id",
     component: Code,
     meta: { title: "Code" },
   },

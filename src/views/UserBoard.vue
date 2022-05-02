@@ -6,7 +6,7 @@ for (let i = 1; i <= 10; ++i) idSeg.push(i);
 </script>
 
 <template>
-  <div class="hero min-h-screen bg-neutral-content sm:my-4">
+  <div class="hero min-h-screen bg-neutral-content">
     <div class="hero-content text-center text-neutral flex-col">
       <h2
         class="text-8xl font-bold text-transparent bg-gradient-to-tl from-blue-500 to-green-300 bg-clip-text">

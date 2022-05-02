@@ -5,7 +5,7 @@ import InputGroup from '../Input/inputGroup.vue';
 <template>
   <div class="modal modal-bottom sm:modal-middle modal-open">
     <div class="modal-box">
-      <h3 class="font-bold text-xl text-center">Login</h3>
+      <h3 class="font-bold text-2xl text-center">Login</h3>
       <br>
       <label class="btn btn-sm btn-circle absolute right-2 top-2" @click="$emit('closeModal')">
       ✕
