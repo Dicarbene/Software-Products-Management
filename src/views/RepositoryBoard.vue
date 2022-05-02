@@ -14,7 +14,7 @@ for (let i = 1; i <= 12; ++i) idSeg.push(i);
       <div class="flex flex-row flex-wrap justify-between">
         <repoCard v-for="n in idSeg" :id="n" />
       </div>
-      <div class="btn-group self-center pb-8">
+      <div class="btn-group self-center mt-12">
         <button class="btn hover:btn-active">«</button>
         <button class="btn hover:btn-active">Page 1</button>
         <button class="btn hover:btn-active">»</button>

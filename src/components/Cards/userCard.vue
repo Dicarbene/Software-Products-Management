@@ -15,7 +15,7 @@ fetch(url)
 </script>
 
 <template>
-  <div class="card card-compact card-side w-content shadow-xl m-4">
+  <div class="card card-compact card-side w-content shadow-xl m-4 hover:bg-accent-focus hover:">
     <figure><img class="mask mask-hexagon" :src="faker.image.imageUrl(80, 80, 'cat', true)"> </figure>
     <div class="card-body">
       <h2 class="card-title">{{ faker.internet.userName() }}</h2>
