@@ -4,7 +4,10 @@ const props = defineProps({
     type: String,
     default: '用户user'
   },
-  
+  repo: {
+    type: Number,
+    default: 1,
+  },
 })
 </script>
 

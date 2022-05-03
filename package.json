@@ -3,9 +3,9 @@
   "author": {
     "name": "Xujie Wan",
     "email": "michaelnatvollhardt@gmail.com"},
-  "version": "0.3.2",
+  "version": "0.5.2",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite ",
     "build": "vite build",
     "serve": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"

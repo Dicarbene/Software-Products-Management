@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { faker } from '@faker-js/faker';
+import { useBackendApi } from '@/stores/backendAPI';
 const props = defineProps({
   id: {
     type: Number,
