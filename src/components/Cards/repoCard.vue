@@ -1,18 +1,10 @@
 <script setup>
-import { ref } from 'vue';
-import { faker } from '@faker-js/faker';
-import { useBackendApi } from '@/stores/backendAPI';
 const props = defineProps({
   id: {
-    type: Number,
-    default: 0
+    type: Object,
+    default: {}
   },
 })
-const user = ref({});
-const url = 'https://fakestoreapi.com/users/' + props.id;
-fetch(url)
-  .then(res => res.json())
-  .then(json => { user.value = json })
 </script>
 
 <template>
@@ -25,15 +17,15 @@ fetch(url)
       <div class="flex flex-row">
         <img src="https://picsum.photos/40/40" class="rounded-xl" />
         <p class="ml-3">
-          <span class="text-neutral font-bold text-lg">facebook/</span>
-          <span class="text-neutral font-bold text-lg">react</span>
+          <span class="text-neutral font-bold text-lg">{{id['creator']}}/</span>
+          <span class="text-neutral font-bold text-lg">{{id['productName']}}</span>
         </p>
       </div>
     </div>
 
     <!-- Content -->
     <p class="text-sm text-neutral mt-3">
-      {{ faker.lorem.sentence() }}
+      {{id['introduction']}}
     </p>
   </a>
 </template>

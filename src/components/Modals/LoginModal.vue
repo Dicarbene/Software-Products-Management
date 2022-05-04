@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue';
 import InputGroup from '../Input/inputGroup.vue';
+import { useBackendApi } from '@/stores/backendAPI';
+const backendAPI = useBackendApi().url;
+
 const username = ref('hello');
 const password = ref('world');
 const emit = defineEmits(['closeModal'])

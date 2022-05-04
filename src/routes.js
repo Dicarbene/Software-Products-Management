@@ -31,7 +31,8 @@ export const routes = [
     meta: { title: "Users Board" },
   },
   { //用户页
-    path: "/user/:id",
+    path: "/user/:name",
+    name: "user",
     component: User,
     meta: { title: "User" },
   },
@@ -42,6 +43,7 @@ export const routes = [
   },
   { //仓库页
     path: "/repo/:id",
+    name: "repo",
     component: Repo,
     meta: { title: "Repository" },
   },

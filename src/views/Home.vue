@@ -24,7 +24,6 @@ const close = () => {
         <Teleport to="body">
           <LoginModal v-if="open" @close-modal="close" />
         </Teleport>
-
       </div>
     </div>
   </main>
