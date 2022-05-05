@@ -2,8 +2,6 @@ lockfileVersion: 5.3
 
 specifiers:
   '@faker-js/faker': ^6.2.0
-  '@headlessui/vue': ^1.5.0
-  '@heroicons/vue': ^1.0.6
   '@tailwindcss/aspect-ratio': ^0.4.0
   '@tailwindcss/forms': ^0.5.0
   '@tailwindcss/line-clamp': ^0.3.1
@@ -30,8 +28,6 @@ dependencies:
 
 devDependencies:
   '@faker-js/faker': 6.2.0
-  '@headlessui/vue': 1.5.0_vue@3.2.33
-  '@heroicons/vue': 1.0.6_vue@3.2.33
   '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.0.24
   '@tailwindcss/forms': 0.5.0_tailwindcss@3.0.24
   '@tailwindcss/line-clamp': 0.3.1_tailwindcss@3.0.24
@@ -76,23 +72,6 @@ packages:
   /@faker-js/faker/6.2.0:
     resolution: {integrity: sha512-3kIcQ+aTr3I+LqDbJwbINFk5oA+a63LH57GPJt9PM8AWqN7nCwnubuSiWosHYQlyf2NicrvpzXQxllyLeEdpyQ==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
-    dev: true
-
-  /@headlessui/vue/1.5.0_vue@3.2.33:
-    resolution: {integrity: sha512-jAp6XYpqdEv32xhszaj5ejvjaX5qhu20sCbxu7lplePEfZL+4ffabivJBBTZAiPWczqAXmnZWNWG5DOyqjRa4w==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      vue: ^3.2.0
-    dependencies:
-      vue: 3.2.33
-    dev: true
-
-  /@heroicons/vue/1.0.6_vue@3.2.33:
-    resolution: {integrity: sha512-ng2YcCQrdoQWEFpw+ipFl2rZo8mZ56v0T5+MyfQQvNqfKChwgP6DMloZLW+rl17GEcHkE3H82UTAMKBKZr4+WA==}
-    peerDependencies:
-      vue: '>= 3'
-    dependencies:
-      vue: 3.2.33
     dev: true
 
   /@humanwhocodes/config-array/0.9.5:

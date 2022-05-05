@@ -21,33 +21,34 @@ xhr.send();
 
 </script>
 <template>
-  <div class="bg-base-100 w-full py-10 px-10">
+  <div class="bg-base-200 w-full py-10 px-10">
     <div>
       <div class="sm:flex space-x-7 md:items-start items-center">
         <div class="mb-4">
           <img class="rounded-md md:w-80" :src="user[0]['profile_pic_url']" alt="brad" />
         </div>
         <div>
-          <h1 class="text-base-content text-4xl font-bold my-2">{{user[0]['user_log_id']}}</h1>
-          <p class="text-base-content text-2xl my-2"></p>
+          <h1 class="text-base-content text-4xl font-bold my-2">{{ user[0]['user_log_id'] }}</h1>
+          <p class="text-base-content text-xl my-2">最后登录时间:{{ user[0]['latest_logon'] }}</p>
+          <p class="text-base-content text-xl my-2">账户创建时间:{{ user[0]['create_time'] }}</p>
         </div>
       </div>
     </div>
     <div class="mt-8 sm:grid grid-cols-2 sm:space-x-4">
       <div class="bg-slate-600 p-6 rounded-md mb-4">
         <span class="text-slate-400 text-md">Website</span>
-        <h2 class="text-slate-100 text-2xl font-semibold">{{user[0]['user_log_id']}}</h2>
+        <h2 class="text-slate-100 text-2xl font-semibold">{{ user[0]['user_log_id'] }}</h2>
       </div>
       <div class="bg-slate-600 p-6 rounded-md mb-4">
         <span class="text-slate-400 text-md">Email</span>
-        <h2 class="text-slate-100 text-2xl font-semibold">{{user[0]['email']}}</h2>
+        <h2 class="text-slate-100 lg:text-2xl text-lg font-semibold">{{ user[0]['email'] }}</h2>
       </div>
     </div>
     <div class="sm:grid lg:grid-cols-4 grid-cols-2 sm:gap-x-4">
       <div class="flex justify-between items-center bg-slate-600 p-6 rounded-md mb-4">
         <div>
           <span class="text-md text-slate-400">Watchers</span>
-          <h1 class="text-3xl font-bold text-slate-100">{{user[3].length}}</h1>
+          <h1 class="text-3xl font-bold text-slate-100">{{ user[3]['starCount'] }}</h1>
         </div>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-cyan-500" fill="none" viewBox="0 0 24 24"
@@ -60,7 +61,7 @@ xhr.send();
       <div class="flex justify-between items-center bg-slate-600 p-6 rounded-md mb-4">
         <div>
           <span class="text-md text-slate-400">Watching</span>
-          <h1 class="text-3xl font-bold text-slate-100">{{user[2].length}}</h1>
+          <h1 class="text-3xl font-bold text-slate-100">{{ user[2]['watchCount'] }}</h1>
         </div>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-500" fill="none" viewBox="0 0 24 24"
@@ -73,7 +74,7 @@ xhr.send();
       <div class="flex justify-between items-center bg-slate-600 p-6 rounded-md mb-4">
         <div>
           <span class="text-md text-slate-400">Public Repos</span>
-          <h1 class="text-3xl font-bold text-slate-100">{{user[1].length}}</h1>
+          <h1 class="text-3xl font-bold text-slate-100">{{ user[1]['productCount'] }}</h1>
         </div>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-yellow-500" fill="none" viewBox="0 0 24 24"

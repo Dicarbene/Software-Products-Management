@@ -16,9 +16,9 @@ const props = defineProps({
     <div class="flex flex-col">
       <div class="flex flex-row">
         <img src="https://picsum.photos/40/40" class="rounded-xl" />
-        <p class="ml-3">
-          <span class="text-neutral font-bold text-lg">{{id['creator']}}/</span>
-          <span class="text-neutral font-bold text-lg">{{id['productName']}}</span>
+        <p class="mx-3 block text-clip">
+          <span class="text-neutral font-bold text-lg ">{{id['creator']}}/</span>
+          <span class="text-neutral font-bold text-lg ">{{id['productName']}}</span>
         </p>
       </div>
     </div>

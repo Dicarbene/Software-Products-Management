@@ -3,13 +3,32 @@ import { ref } from 'vue';
 import InputGroup from '../Input/inputGroup.vue';
 import { useBackendApi } from '@/stores/backendAPI';
 const backendAPI = useBackendApi().url;
+const url = `http://${backendAPI}/login`;
 
 const username = ref('hello');
 const password = ref('world');
-const emit = defineEmits(['closeModal'])
-const submit= () => {
-  console.log(username.value,password.value);
-  emit('closeModal');
+const emit = defineEmits(['closeModal','successfulLogin'])
+const submit = () => {
+  var data = JSON.stringify({
+    "id_or_email": username.value,
+    "password": password.value
+  });
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      const res = JSON.parse(this.responseText);
+      if(res['ifLogin']) {
+        emit('successfulLogin',username.value);
+      }else {
+        alert('Login failed');
+      }
+    }
+  });
+
+  xhr.open("POST", url);
+  xhr.send(data);
 }
 </script>
 
@@ -19,7 +38,7 @@ const submit= () => {
       <h3 class="font-bold text-2xl text-center">Login</h3>
       <br>
       <label class="btn btn-sm btn-circle absolute right-2 top-2" @click="emit('closeModal')">
-      ✕
+        ✕
       </label>
       <div class=" form-control">
         <InputGroup explain="你的账号/邮箱" inputType="Account" placeHolder="info@site.com" v-model="username" />

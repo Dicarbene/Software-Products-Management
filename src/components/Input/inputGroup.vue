@@ -7,9 +7,9 @@ defineProps({
     type: Boolean,
     default: false,
   },
-  validator:{
-    type: Function,
-    default: () => true,
+  pattern:{
+    type: RegExp,
+    default: /.*/,
   },
   modelValue: String,
 })
