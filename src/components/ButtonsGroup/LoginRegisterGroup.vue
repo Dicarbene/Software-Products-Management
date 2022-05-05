@@ -5,8 +5,10 @@ import { storeToRefs } from "pinia";
 import LoginModal from '@/components/Modals/LoginModal.vue';
 import RegisterModal from '@/components/Modals/RegisterModal.vue';
 import { useBackendApi } from '@/stores/backendAPI';
-const backendAPI = useBackendApi().url;
+import { useRouter } from "vue-router";
 
+const backendAPI = useBackendApi().url;
+const router = useRouter();
 const userStatusStore = useUserStatus();
 const { Logged, user } = storeToRefs(userStatusStore);
 
@@ -24,20 +26,22 @@ const logined = (username) => {
     if (this.readyState === 4) {
       const res = JSON.parse(this.responseText);
       userStatusStore.$patch((state) => {
-        state.Logged=true;
-        state.user=res;
+        state.Logged = true;
+        state.user = res;
       });
     }
   });
-  xhr.open("POST", url);
-  xhr.send(data);
+  xhr.open("GET", url);
+  xhr.send();
 }
-const logout = () =>{
+
+const logout = () => {
   state.value.logged = false;
-  userStatusStore.$patch((state) => {
-    state.Logged=false;
-    state.user={};
+  userStatusStore.$patch((s) => {
+    s.Logged = false;
+    s.user = {};
   });
+  alert('log out successfully');
 }
 const close = (ss) => {
   if (ss == "loginOrRegister") {
@@ -45,15 +49,29 @@ const close = (ss) => {
     state.value.registerOpen = false;
   }
 }
+const toUser = (username) => {
+  router.push({
+    name: "user",
+    params: {
+      name: username
+    }
+  });
+};
+
 </script>
 <template>
-  <div v-if="!Logged.value">
+  <div v-if="!Logged">
     <a class="btn btn-primary mr-3 mb-0.5" @click="state.loginOpen = true">Log in</a>
     <a class="btn btn-accent" @click="state.registerOpen = true">Register</a>
   </div>
-  <div v-else>
-    <a class="btn btn-ghost mr-3">name</a>
-    <a @click="Logged.value" class="btn btn-ghost">Log out</a>
+  <div v-else class="flex hover:cursor-pointer">
+    <div class="avatar mr-2 online" @click="toUser(user[0]['user_log_id'])"
+      :class="[user[0]['profile_pic_url'] != null ? '' : 'placeholder']">
+      <div class="w-12 rounded-full ring ring-primary hover:ring-primary-focus ring-offset-base-100 ring-offset-2">
+        <img :src="user[0]['profile_pic_url']" class="hover:blur" />
+      </div>
+    </div>
+    <a @click="logout" class="btn btn-ghost">Log out</a>
   </div>
 
   <Teleport to="body">

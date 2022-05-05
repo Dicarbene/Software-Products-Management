@@ -10,13 +10,13 @@ import LoginRegisterGroup from "./ButtonsGroup/LoginRegisterGroup.vue";
 <template>
   <div class="navbar bg-base-100 opacity-90 backdrop-blur text-sans">
     <div class="navbar-start">
-      <NavDropdown />
+      <NavDropdown class="mr-4" />
+      <ThemeChangeButton />
     </div>
     <div class="navbar-center hidden lg:flex">
       <Home/>
     </div>
     <div class="navbar-end">
-      <ThemeChangeButton />
       <LoginRegisterGroup />
     </div>
   </div>

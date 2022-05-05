@@ -21,6 +21,8 @@ const submit = () => {
       const res = JSON.parse(this.responseText);
       if(res['ifLogin']) {
         emit('successfulLogin',username.value);
+        alert('login successful');
+        emit('closeModal');
       }else {
         alert('Login failed');
       }
@@ -28,6 +30,7 @@ const submit = () => {
   });
 
   xhr.open("POST", url);
+  xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(data);
 }
 </script>

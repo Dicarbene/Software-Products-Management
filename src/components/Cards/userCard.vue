@@ -18,11 +18,8 @@ const changePage = () => {
   });
 
   xhr.open("GET", url);
-
   xhr.send();
 }
-
-//@todo 连接
 </script>
 
 <template>

@@ -40,6 +40,7 @@ const submit = () => {
   });
 
   xhr.open("POST", url);
+  xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(data);
 }
 </script>
