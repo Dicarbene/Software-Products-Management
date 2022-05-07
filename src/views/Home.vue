@@ -1,10 +1,4 @@
 <script setup>
-import { ref } from 'vue';
-import LoginModal from '@/components/Modals/LoginModal.vue';
-const open = ref(false);
-const close = () => {
-  open.value = false;
-}
 </script>
 
 <template>
@@ -17,13 +11,9 @@ const close = () => {
       </h2>
       <div class="max-w-md">
         <br>
-        <button class="btn btn-primary btn-xl text-2xl" @click="open = true">Get Started</button>
+        <button class="btn btn-primary btn-xl text-2xl">Get Started</button>
         <br><br>
         <p class="mb-5 text-secondary-content text-2xl">万旭杰 郑宗泽 李珅</p>
-
-        <Teleport to="body">
-          <LoginModal v-if="open" @close-modal="close" />
-        </Teleport>
       </div>
     </div>
   </main>

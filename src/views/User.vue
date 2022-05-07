@@ -44,7 +44,7 @@ xhr.send();
         <h2 class="text-slate-100 lg:text-2xl text-lg font-semibold">{{ user[0]['email'] }}</h2>
       </div>
     </div>
-    <div class="sm:grid lg:grid-cols-4 grid-cols-2 sm:gap-x-4">
+    <div class="sm:grid lg:grid-cols-3 grid-cols-2 sm:gap-x-4">
       <div class="flex justify-between items-center bg-slate-600 p-6 rounded-md mb-4">
         <div>
           <span class="text-md text-slate-400">Watchers</span>
@@ -81,19 +81,6 @@ xhr.send();
             stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-          </svg>
-        </div>
-      </div>
-      <div class="flex justify-between items-center bg-slate-600 p-6 rounded-md mb-4">
-        <div>
-          <span class="text-md text-slate-400">Public Gists</span>
-          <h1 class="text-3xl font-bold text-slate-100">40</h1>
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-red-500" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
           </svg>
         </div>
       </div>

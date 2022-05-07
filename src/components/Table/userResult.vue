@@ -1,65 +1,65 @@
 <script setup>
-const props = defineProps({
-  type: {
-    type: String,
-    default: '用户user'
+import UserLine from './userLine.vue';
+defineProps({
+  result: {
+    type: Array,
+    default: [
+      {
+        "id": 793,
+        "userId": "Candice.Prohaska40",
+        "email": "Domingo_Lakin95@gmail.com",
+        "picUrl": "http://loremflickr.com/128/128/cats"
+      },
+      {
+        "id": 824,
+        "userId": "Loy_Prohaska",
+        "email": "Marge.Wehner93@hotmail.com",
+        "picUrl": "http://loremflickr.com/128/128/cats"
+      },
+      {
+        "id": 1031,
+        "userId": "America_Prohaska",
+        "email": "Lucinda_Leannon@yahoo.com",
+        "picUrl": "http://loremflickr.com/128/128/cats"
+      },
+      {
+        "id": 1401,
+        "userId": "Serenity.Prosacco38",
+        "email": "Ezra.Hermiston@gmail.com",
+        "picUrl": "http://loremflickr.com/128/128/cats"
+      },
+      null
+    ]
   },
-  repo: {
+  pp: {
     type: Number,
-    default: 1,
-  },
-})
+    default: 0
+  }
+});
 </script>
 
 <template>
-  <div class="overflow-x-auto w-full">
+  <div class="overflow-x-auto w-full flex">
     <table class="table w-full">
       <!-- head -->
       <thead>
         <tr>
           <th>
-            No.
+            User
           </th>
           <th>Name</th>
-          <th>Job</th>
-          <th>Favorite Color</th>
-          <th></th>
+          <th>Email</th>
         </tr>
       </thead>
       <tbody>
         <!-- row 1 -->
-        <tr>
-          <th>
-            1
-          </th>
-          <td>
-            <div class="flex items-center space-x-3">
-              <div>
-                <div class="font-bold">Hart Hagerty</div>
-                <div class="text-sm opacity-50">United States</div>
-              </div>
-            </div>
-          </td>
-          <td>
-            Zemlak, Daniel and Leannon
-            <br>
-            <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
-          </td>
-          <td>Purple</td>
-          <th>
-            <button class="btn btn-ghost btn-xs">details</button>
-          </th>
-        </tr>
+        <UserLine v-for="(data, idx) in result" :data="data" :idx="idx" :page="pp"></UserLine>
       </tbody>
       <!-- foot -->
       <tfoot>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Job</th>
-          <th>Favorite Color</th>
-          <th></th>
-        </tr>
+        <th> User </th>
+        <th>Name</th>
+        <th>Email</th>
       </tfoot>
     </table>
   </div>
