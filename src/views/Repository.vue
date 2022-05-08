@@ -1,7 +1,43 @@
 <script setup>
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import { useBackendApi } from '@/stores/backendAPI';
+import CodeLine from '@/components/Table/codeLine.vue';
+const router = useRouter();
+const backendAPI = useBackendApi().url;
 const repoid = useRoute().params.id;
+const username = useRoute().params.user;
+
+const codedata = ref([{
+  "id": 9,
+  "product_id": 11,
+  "creator_log_id": "zzz",
+  "file_name": "file_1_for_zzz",
+  "latest_change_time": "2022-05-08T17:48:32.000Z"
+}]);
+let url = `http://${backendAPI}/user=${username}/product=`;
+console.log(repoid);
+url += repoid;
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = false;
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    codedata.value = JSON.parse(this.responseText)[3];
+  }
+});
+xhr.open("GET", url);
+xhr.send();
+
+const toCode = (state) => {
+  router.push({
+    name: "code",
+    params: {
+      id: repoid,
+      user: username,
+      blob: state['file_name']
+    }
+  })
+}
 </script>
 
 <template>
@@ -160,21 +196,9 @@ const repoid = useRoute().params.id;
                 </div>
               </div>
               <div class="hidden text-center border-b border-l border-r rounded-b-lg md:block">
-                <div class="flex px-4 py-2 text-sm hover:bg-gray-200">
-                  <div class="flex w-1/4">
-                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                      stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z">
-                      </path>
-                    </svg>
-                    <p class="ml-2 cursor-pointer hover:underline hover:text-blue-500">LICENSE</p>
-                  </div>
-                  <p class="w-1/2 text-left cursor-pointer hover:underline hover:text-blue-500">Avoid updating license
-                    every year</p>
-                  <p class="w-1/4 ml-2 text-right">3 years ago</p>
-                </div>
+                <CodeLine v-for="data in codedata" :code="data" @click="toCode(data)" />
               </div>
+
               <div class="py-2 text-center border-b border-l border-r rounded-b-lg md:hidden">
                 <p class="text-blue-600 cursor-pointer hover:underline">View code</p>
               </div>

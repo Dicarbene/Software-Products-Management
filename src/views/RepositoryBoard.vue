@@ -34,11 +34,12 @@ onBeforeMount(() => {
 
 watch(page, changePage);
 
-const toBoard = (repoid) => {
+const toBoard = (repoid,username) => {
   router.push({
     name: "repo",
     params: {
-      id: repoid
+      id: repoid,
+      user: username,
     }
   });
 }
@@ -51,7 +52,7 @@ const toBoard = (repoid) => {
         仓库浏览
       </h2>
       <div class="flex flex-row flex-wrap justify-between">
-        <repoCard v-for="n in idSeg" :id="n" @click="toBoard(n['id'])" />
+        <repoCard v-for="n in idSeg" :id="n" @click="toBoard(n['productName'],n['creator'])" />
       </div>
       <div class="tooltip hover:tooltip-open tooltip-bottom tooltip-primary" :data-tip="mxVal">
         <div class="btn-group self-center">

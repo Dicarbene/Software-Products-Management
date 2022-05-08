@@ -36,13 +36,14 @@ export const routes = [
     meta: { title: "Repository Board" },
   },
   { //仓库页
-    path: "/repo/:id",
+    path: "/user/:user/repo/:id",
     name: "repo",
     component: Repo,
     meta: { title: "Repository" },
   },
   { //代码页
-    path: "/repo/:repoid/:id",
+    path: "/user/:user/repo/:id/code/:blob",
+    name: "code",
     component: Code,
     meta: { title: "Code" },
   },
