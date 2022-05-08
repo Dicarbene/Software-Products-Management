@@ -2,7 +2,8 @@
   "name": "Software Product Management",
   "author": {
     "name": "Xujie Wan",
-    "email": "michaelnatvollhardt@gmail.com"},
+    "email": "michaelnatvollhardt@gmail.com"
+  },
   "version": "0.5.2",
   "scripts": {
     "dev": "vite ",
@@ -11,6 +12,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "codemirror": "^5.65.3",
+    "codemirror-editor-vue3": "^2.1.3",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14"
