@@ -39,8 +39,6 @@ const cmOptions = ref({
   lineWrapping: true,
 });
 
-
-
 let url = `http://${backendAPI}/user=${username}/product=${repoid}/code=${codename}`;
 var xhr = new XMLHttpRequest();
 xhr.addEventListener("readystatechange", function () {
@@ -54,13 +52,52 @@ xhr.send();
 const change = () => {
   console.log(code.value);
 }
+
+const updateBlob = () => {
+  /*/user=:u_log_id/product=:p_name/code=:f_name: 文件上传
+params
+u_log_id: 用户名
+p_name: 仓库名
+f_name: 文件名
+body
+watcher_id: String(required): 浏览者用户名
+coworkers: String[](required):协作者用户名数组
+file: String(required):文件内容(长字符串)
+*/
+  let url = `http://${backendAPI}/user=${username}/product=${repoid}/code=${codename}`;
+  let val = {};
+  val['watcher_id'] = user[0]['user_log_id'];
+  val['file'] = code.value;
+  let xhr = new XMLHttpRequest();
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      alert("修改成功");
+      let url = `http://${backendAPI}/user=${username}/product=${repoid}/code=${codename}`;
+      var xhr = new XMLHttpRequest();
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          code.value = JSON.parse(this.responseText)[0]['url'];
+          orgCode.value = JSON.parse(this.responseText)[0]['url'];
+        }
+      });
+      xhr.open("GET", url);
+      xhr.send();
+    }
+  });
+  xhr.open("POST", url);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify(val));
+}
 </script>
 <template>
   <div class="flex justify-between">
-    <Codemirror v-model:value="orgCode" :options="originalOptions" border placeholder="test placeholder" class=" max-w-screen-sm" />
-    <Codemirror v-model:value="code" :options="cmOptions" border placeholder="test placeholder" @change="change" class=" max-w-screen-sm" />
+    <Codemirror v-model:value="orgCode" :options="originalOptions" border placeholder="test placeholder"
+      class=" max-w-screen-sm" />
+    <Codemirror v-model:value="code" :options="cmOptions" border placeholder="test placeholder" @change="change"
+      class=" max-w-screen-sm" />
   </div>
-  <button class="btn btn-success w-20 self-center mb-2" :class="[logged?'':'btn-disabled']" @click="updateBlob">update</button>
+  <button class="btn btn-success w-20 self-center mb-2" :class="[logged ? '' : 'btn-disabled']"
+    @click="updateBlob">update</button>
 </template>
 <style scoped>
 </style>

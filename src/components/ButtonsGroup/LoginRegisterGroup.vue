@@ -61,11 +61,11 @@ const toUser = (username) => {
 </script>
 <template>
   <div v-if="!Logged">
-    <a class="btn btn-primary mr-3 mb-0.5" @click="state.loginOpen = true">Log in</a>
+    <a class="btn btn-primary lg:mr-3 " @click="state.loginOpen = true">Log in</a>
     <a class="btn btn-accent" @click="state.registerOpen = true">Register</a>
   </div>
   <div v-else class="flex hover:cursor-pointer">
-    <div class="avatar mr-2 online" @click="toUser(user[0]['user_log_id'])"
+    <div class="avatar online" @click="toUser(user[0]['user_log_id'])"
       :class="[user[0]['profile_pic_url'] != null ? '' : 'placeholder']">
       <div class="w-12 rounded-full ring ring-primary hover:ring-secondary-focus ring-offset-base-100 ring-offset-2">
         <img :src="user[0]['profile_pic_url']" class="hover:blur" />

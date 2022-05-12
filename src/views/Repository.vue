@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useBackendApi } from '@/stores/backendAPI';
 import CodeLine from '@/components/Table/codeLine.vue';
@@ -7,7 +7,7 @@ const router = useRouter();
 const backendAPI = useBackendApi().url;
 const repoid = useRoute().params.id;
 const username = useRoute().params.user;
-
+const repodata = ref([{ "id": 9, "product_id": 11, "creator_log_id": "zzz", "file_name": "file_1_for_zzz", "latest_change_time": "2022-05-08T22:49:27.000Z" }, { "id": 10, "product_id": 11, "creator_log_id": "zzz", "file_name": "file_2_for_zzz", "latest_change_time": "2022-05-09T00:45:55.000Z" }, { "id": 11, "product_id": 11, "creator_log_id": "zzz", "file_name": "file_3_for_zzz", "latest_change_time": "2022-05-08T17:48:49.000Z" }, { "id": 12, "product_id": 11, "creator_log_id": "zzz", "file_name": "file_4_for_zzz", "latest_change_time": "2022-05-08T17:48:52.000Z" }]);
 const codedata = ref([{
   "id": 9,
   "product_id": 11,
@@ -22,12 +22,21 @@ var xhr = new XMLHttpRequest();
 xhr.withCredentials = false;
 xhr.addEventListener("readystatechange", function () {
   if (this.readyState === 4) {
+    repodata.value = JSON.parse(this.responseText);
     codedata.value = JSON.parse(this.responseText)[3];
   }
 });
 xhr.open("GET", url);
 xhr.send();
 
+const toUser = () => {
+  router.push({
+    name: "user",
+    params: {
+      name: username
+    }
+  });
+}
 const toCode = (state) => {
   router.push({
     name: "code",
@@ -53,13 +62,14 @@ const toCode = (state) => {
               </path>
             </svg>
           </span>
-          <div class="text-xl font-medium text-blue-700 cursor-pointer hover:underline">tailwindcss</div>
+          <div class="text-xl font-medium text-blue-700 cursor-pointer hover:underline" @click="toUser">{{ username }}</div>
           <span class="mx-1 text-xl font-medium text-gray-800">/</span>
-          <div class="text-xl font-semibold text-blue-700 cursor-pointer hover:underline">tailwindcss</div>
+          <div class="text-xl font-semibold text-blue-700 cursor-pointer hover:underline">{{ repoid }}
+          </div>
         </div>
         <div class="mt-4 mb-2 md:hidden">
           <span class="text-sm">
-            A utility-first CSS framework for rapid UI development.
+            {{ repodata[0]['introduction']  }}
           </span>
         </div>
         <div class="hidden md:block md:flex md:justify-between">
@@ -156,14 +166,6 @@ const toCode = (state) => {
                   class="flex items-center justify-center px-4 py-1 ml-2 text-center bg-gray-100 border border-gray-400 rounded-lg focus:outline-none hover:bg-gray-300">
                   <span class="self-center text-sm font-medium">Add file</span>
                 </button>
-                <button type="button"
-                  class="flex items-center justify-center px-4 py-1 ml-2 text-center text-white bg-green-600 border border-green-700 rounded-lg focus:outline-none hover:bg-green-700">
-                  <svg class="w-5 h-5 mr-1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                  </svg>
-                  <span class="self-center text-sm font-medium">Clone</span>
-                </button>
               </div>
               <button type="button"
                 class="flex items-center justify-center px-6 py-1 ml-2 text-center bg-gray-100 border border-gray-400 rounded-lg md:hidden focus:outline-none hover:bg-gray-300">
@@ -212,56 +214,9 @@ const toCode = (state) => {
               <p class="text-base font-semibold text-black">About</p>
               <div class="pb-2 mt-4 border-b">
                 <span class="text-sm lg:text-base">
-                  A utility-first CSS framework for rapid UI development.
+                  {{ repodata[0]['introduction']  }}
                 </span>
-                <div class="my-4">
-                  <a class="flex items-center mb-2 text-base font-semibold text-blue-600 hover:underline" href="#">
-                    <svg class="w-4 h-4 mr-2 text-gray-700" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                      stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
-                      </path>
-                    </svg>
-                    tailwindcss.com/</a>
-                  <a href="" class="flex items-center mb-2 text-base font-medium text-gray-700 hover:underline">
-                    <svg class="w-4 h-4 mr-2 text-gray-700 fill-current mr-2 octicon octicon-book" height="16" mr="2"
-                      viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
-                      <path fill-rule="evenodd"
-                        d="M0 1.75A.75.75 0 01.75 1h4.253c1.227 0 2.317.59 3 1.501A3.744 3.744 0 0111.006 1h4.245a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75h-4.507a2.25 2.25 0 00-1.591.659l-.622.621a.75.75 0 01-1.06 0l-.622-.621A2.25 2.25 0 005.258 13H.75a.75.75 0 01-.75-.75V1.75zm8.755 3a2.25 2.25 0 012.25-2.25H14.5v9h-3.757c-.71 0-1.4.201-1.992.572l.004-7.322zm-1.504 7.324l.004-5.073-.002-2.253A2.25 2.25 0 005.003 2.5H1.5v9h3.757a3.75 3.75 0 011.994.574z">
-                      </path>
-                    </svg>
-                    Readme
-                  </a>
-                  <a href="" class="flex items-center mb-2 text-base font-medium text-gray-700 hover:underline">
-                    <svg height="16" class="w-4 h-4 mr-2 text-gray-700 fill-current" mr="2" viewBox="0 0 16 16"
-                      version="1.1" width="16" aria-hidden="true">
-                      <path fill-rule="evenodd"
-                        d="M8.75.75a.75.75 0 00-1.5 0V2h-.984c-.305 0-.604.08-.869.23l-1.288.737A.25.25 0 013.984 3H1.75a.75.75 0 000 1.5h.428L.066 9.192a.75.75 0 00.154.838l.53-.53-.53.53v.001l.002.002.002.002.006.006.016.015.045.04a3.514 3.514 0 00.686.45A4.492 4.492 0 003 11c.88 0 1.556-.22 2.023-.454a3.515 3.515 0 00.686-.45l.045-.04.016-.015.006-.006.002-.002.001-.002L5.25 9.5l.53.53a.75.75 0 00.154-.838L3.822 4.5h.162c.305 0 .604-.08.869-.23l1.289-.737a.25.25 0 01.124-.033h.984V13h-2.5a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-2.5V3.5h.984a.25.25 0 01.124.033l1.29.736c.264.152.563.231.868.231h.162l-2.112 4.692a.75.75 0 00.154.838l.53-.53-.53.53v.001l.002.002.002.002.006.006.016.015.045.04a3.517 3.517 0 00.686.45A4.492 4.492 0 0013 11c.88 0 1.556-.22 2.023-.454a3.512 3.512 0 00.686-.45l.045-.04.01-.01.006-.005.006-.006.002-.002.001-.002-.529-.531.53.53a.75.75 0 00.154-.838L13.823 4.5h.427a.75.75 0 000-1.5h-2.234a.25.25 0 01-.124-.033l-1.29-.736A1.75 1.75 0 009.735 2H8.75V.75zM1.695 9.227c.285.135.718.273 1.305.273s1.02-.138 1.305-.273L3 6.327l-1.305 2.9zm10 0c.285.135.718.273 1.305.273s1.02-.138 1.305-.273L13 6.327l-1.305 2.9z">
-                      </path>
-                    </svg>
-                    MIT License
-                  </a>
-                </div>
               </div>
-            </div>
-            <div class="px-6 py-6 -mx-10 border-b md:mx-0 md:px-0">
-              <p class="text-base font-semibold text-black">Latest release</p>
-              <div class="flex mt-4 text-sm font-semibold text-black">
-                <svg class="w-4 h-4 mt-1 mr-2 text-green-600" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                  <path
-                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
-                  </path>
-                </svg>
-                <div>
-                  v1.4.6 <br>
-                  <span class="text-xs text-gray-600">on May 8</span>
-                </div>
-              </div>
-              <div class="mt-4 text-xs text-blue-600">+ 75 releases</div>
-            </div>
-            <div class="px-6 py-6 -mx-10 border-b md:mx-0 md:px-0">
-              <p class="pt-2 text-xs font-medium text-blue-700 hover:underline">+ 98 coworkers</p>
             </div>
           </div>
         </div>

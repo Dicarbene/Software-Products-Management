@@ -4,11 +4,11 @@
     "name": "Xujie Wan",
     "email": "michaelnatvollhardt@gmail.com"
   },
-  "version": "0.5.2",
+  "version": "1.0.2",
   "scripts": {
     "dev": "vite ",
     "build": "vite build",
-    "serve": "vite preview",
+    "serve": "vite build && vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
